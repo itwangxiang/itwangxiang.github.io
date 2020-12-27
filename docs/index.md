@@ -38,7 +38,8 @@
 - Database
   - [Mysql](md/database/mysql.md)
 - Tool
-  - [Google 搜索技巧](#Google-搜索技巧)
+  - Google
+    - [搜索技巧](md/tool/google.md#搜索技巧)
   - [Git](md/tool/git.md)
     - [设置 Git 代理](md/tool/git.md#设置-Git-代理)
     - [设置 SSH 代理](md/tool/git.md#设置-SSH-代理)
@@ -47,5 +48,5 @@
   - [ADB](md/android/adb.md)
 - Asset
   - book
-    - [设计模式_可复用面向对象软件的基础](asset/book/设计模式_可复用面向对象软件的基础.pdf)
-    - [HeadFirst_设计模式](asset/book/HeadFirst_设计模式.pdf)
+    - [设计模式_可复用面向对象软件的基础](asset/pdf/设计模式_可复用面向对象软件的基础.pdf)
+    - [HeadFirst_设计模式](asset/pdf/HeadFirst_设计模式.pdf)
