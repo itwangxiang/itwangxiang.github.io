@@ -1,52 +1,74 @@
-## 技术博客
+# 技术博客
 
-- [Basic](md/language/basic.md) - [思维导图](mind/Basic.pdf)
-  - [算法](md/language/basic.md#算法)
-  - [设计模式](md/language/basic.md#设计模式)
-- [Java](md/language/java.md) - [思维导图](mind/Java.pdf)
-  - [集合](md/language/java.md#集合)
-    - [非线程安全集合](md/language/java.md#非线程安全集合)
-    - [线程安全集合](md/language/java.md#线程安全集合)
-  - [并发](md/language/java.md#并发)
-    - [线程](md/language/java.md#线程)
-    - [`ExecutorService` 和 `Thread Pools`](#executorservice-和-thread-pools)
-    - [死锁/活锁/饥饿锁 乐观锁/悲观锁](#死锁活锁饥饿锁-乐观锁悲观锁)
-    - [CountDownLatch/Semaphore](#countdownlatchsemaphore)
-- [Kotlin](md/language/kotlin.md)
-  - [基础](md/language/kotlin.md#基础)
-    - [基础语法](md/language/kotlin.md#基础语法)
-    - [惯用语法](md/language/kotlin.md#惯用语法)
-- [Golang](md/language/golang.md)
-  - [交叉编译](md/language/golang.md#交叉编译)
-- [Android](md/android.md) - [思维导图](mind/Android.pdf)
-  - [基础篇](md/android.md#基础篇)
-  - [原理篇](md/android.md#原理篇)
-  - [核心篇](md/android.md#核心篇)
-  - [开源篇](md/android.md#开源篇)
-  - [外设篇](md/android.md#外设篇)
-    - [低功耗蓝牙](md/android.md#低功耗蓝牙Bluetooth-Low-Energy)
-    - [串口通信](md/android.md#串口通信)
-- [Flutter](md/flutter.md)
-- [Nginx](md/nginx.md)
-- [Docker](md/docker.md)
-- OS
-  - [Mac](md/os/mac.md)
-    - [用户环境变量](md/os/mac.md#用户环境变量)
-  - [Linux](md/os/linux.md)
-  - [Ubuntu](md/os/ubuntu.md)
-  - [Centos](md/os/centos.md)
-- Database
-  - [Mysql](md/database/mysql.md)
-- Tool
-  - Google
-    - [搜索技巧](md/tool/google.md#搜索技巧)
-  - [Git](md/tool/git.md)
-    - [设置 Git 代理](md/tool/git.md#设置-git-代理)
-    - [设置 SSH 代理](md/tool/git.md#设置-ssh-代理)
-    - [Commit Message 规范](md/tool/git-commit-message-specification.md)
-  - [Vim](md/tool/vim.md)
-  - [ADB](md/android/adb.md)
-- Asset
-  - book
-    - [设计模式_可复用面向对象软件的基础](asset/pdf/设计模式_可复用面向对象软件的基础.pdf)
-    - [HeadFirst_设计模式](asset/pdf/HeadFirst_设计模式.pdf)
+## 目录
+
+### [Basic](md/language/basic.md) - [思维导图](mind/Basic.pdf)
+
+- [算法](md/language/basic.md#算法)
+- [设计模式](md/language/basic.md#设计模式)
+
+### [Java](md/language/java.md) - [思维导图](mind/Java.pdf)
+
+- [集合](md/language/java.md#集合)
+  - [非线程安全集合](md/language/java.md#非线程安全集合)
+  - [线程安全集合](md/language/java.md#线程安全集合)
+- [并发](md/language/java.md#并发)
+  - [线程](md/language/java.md#线程)
+  - [`ExecutorService` 和 `Thread Pools`](#executorservice-和-thread-pools)
+  - [死锁/活锁/饥饿锁 乐观锁/悲观锁](#死锁活锁饥饿锁-乐观锁悲观锁)
+  - [CountDownLatch/Semaphore](#countdownlatchsemaphore)
+
+### [Kotlin](md/language/kotlin.md)
+
+- [基础](md/language/kotlin.md#基础)
+  - [基础语法](md/language/kotlin.md#基础语法)
+  - [惯用语法](md/language/kotlin.md#惯用语法)
+
+### [Golang](md/language/golang.md)
+
+- [交叉编译](md/language/golang.md#交叉编译)
+
+### [Android](md/android.md) - [思维导图](mind/Android.pdf)
+
+- [基础篇](md/android.md#基础篇)
+- [原理篇](md/android.md#原理篇)
+- [核心篇](md/android.md#核心篇)
+- [开源篇](md/android.md#开源篇)
+- [外设篇](md/android.md#外设篇)
+  - [低功耗蓝牙](md/android.md#低功耗蓝牙Bluetooth-Low-Energy)
+  - [串口通信](md/android.md#串口通信)
+
+### [Flutter](md/flutter.md)
+
+### [Nginx](md/nginx.md)
+
+### [Docker](md/docker.md)
+
+### OS
+
+- [Mac](md/os/mac.md)
+  - [用户环境变量](md/os/mac.md#用户环境变量)
+- [Linux](md/os/linux.md)
+- [Ubuntu](md/os/ubuntu.md)
+- [Centos](md/os/centos.md)
+
+### Database
+
+- [Mysql](md/database/mysql.md)
+
+### Tool
+
+- Google
+  - [搜索技巧](md/tool/google.md#搜索技巧)
+- [Git](md/tool/git.md)
+  - [设置 Git 代理](md/tool/git.md#设置-git-代理)
+  - [设置 SSH 代理](md/tool/git.md#设置-ssh-代理)
+  - [Commit Message 规范](md/tool/git-commit-message-specification.md)
+- [Vim](md/tool/vim.md)
+- [ADB](md/android/adb.md)
+
+### Asset
+
+- book
+  - [设计模式_可复用面向对象软件的基础](asset/pdf/设计模式_可复用面向对象软件的基础.pdf)
+  - [HeadFirst_设计模式](asset/pdf/HeadFirst_设计模式.pdf)
