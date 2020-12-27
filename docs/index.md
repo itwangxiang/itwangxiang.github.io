@@ -41,8 +41,8 @@
   - Google
     - [搜索技巧](md/tool/google.md#搜索技巧)
   - [Git](md/tool/git.md)
-    - [设置 Git 代理](md/tool/git.md#设置-Git-代理)
-    - [设置 SSH 代理](md/tool/git.md#设置-SSH-代理)
+    - [设置 Git 代理](md/tool/git.md#设置-git-代理)
+    - [设置 SSH 代理](md/tool/git.md#设置-ssh-代理)
     - [Commit Message 规范](md/tool/git-commit-message-specification.md)
   - [Vim](md/tool/vim.md)
   - [ADB](md/android/adb.md)
