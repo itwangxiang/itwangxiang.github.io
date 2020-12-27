@@ -1,9 +1,9 @@
 
 # Android
 
-## 系统架构图
+>系统架构图
 
-![android_system_structure](/asset/img/android_system_structure.png)
+![android_system_structure](../asset/img/android_system_structure.png)
 
 ## 基础篇
 
@@ -301,7 +301,7 @@
 
   > 简单，漂亮，功能强大的 android 记录器
 
-- EventBus [官网](https://github.com/greenrobot/EventBus) - [源码](docs/source/EventBus.md)
+- EventBus [官网](https://github.com/greenrobot/EventBus) - [源码](md/android/EventBus.md)
 
   > 适用于 Android 和 Java 的事件总线，可简化 Activities, Fragments, Threads, Services 等之间的通信。减少代码，提高质量
 
