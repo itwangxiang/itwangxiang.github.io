@@ -1,20 +1,36 @@
-# GIT
+- [GIT](#git)
+  - [关系图](#关系图)
+  - [名词](#名词)
+  - [新建代码库](#新建代码库)
+  - [配置](#配置)
+  - [增加/删除文件](#增加删除文件)
+  - [代码提交](#代码提交)
+  - [分支](#分支)
+  - [标签](#标签)
+  - [查看信息](#查看信息)
+  - [远程同步](#远程同步)
+  - [撤销](#撤销)
+  - [设置 Git 代理](#设置-git-代理)
+  - [设置 SSH 代理](#设置-ssh-代理)
+  - [其它](#其它)
+
+## GIT
 
 > 摘录 - [常用 Git 命令清单](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
-## 关系图
+### 关系图
 
 ![git](../../asset/img/20181114001.png)
 ![git](../../asset/img/20181117001.png)
 
-## 名词
+### 名词
 
 - Workspace：工作区
 - Index / Stage：暂存区
 - Repository：仓库区（或本地仓库）
 - Remote：远程仓库
 
-## 新建代码库
+### 新建代码库
 
 ```bash
 # 在当前目录新建一个Git代码库
@@ -27,7 +43,7 @@ $ git init [project-name]
 $ git clone [url]
 ```
 
-## 配置
+### 配置
 
 ```bash
 # 显示当前的Git配置
@@ -44,7 +60,7 @@ $ git config [--global] user.email "[email address]"
 $ git config --global credential.helper store
 ```
 
-## 增加/删除文件
+### 增加/删除文件
 
 ```bash
 # 添加指定文件到暂存区
@@ -70,7 +86,7 @@ $ git rm --cached [file]
 $ git mv [file-original] [file-renamed]
 ```
 
-## 代码提交
+### 代码提交
 
 ```bash
 # 提交暂存区到仓库区
@@ -93,7 +109,7 @@ $ git commit --amend -m [message]
 $ git commit --amend [file1] [file2] ...
 ```
 
-## 分支
+### 分支
 
 ```bash
 # 列出所有本地分支
@@ -140,7 +156,7 @@ $ git push origin --delete [branch-name]
 $ git branch -dr [remote/branch]
 ```
 
-## 标签
+### 标签
 
 ```bash
 # 列出所有tag
@@ -171,7 +187,7 @@ $ git push [remote] --tags
 $ git checkout -b [branch] [tag]
 ```
 
-## 查看信息
+### 查看信息
 
 ```bash
 # 显示有变更的文件
@@ -236,7 +252,7 @@ $ git show [commit]:[filename]
 $ git reflog
 ```
 
-## 远程同步
+### 远程同步
 
 ```bash
 # 下载远程仓库的所有变动
@@ -264,7 +280,7 @@ $ git push [remote] --force
 $ git push [remote] --all
 ```
 
-## 撤销
+### 撤销
 
 ```bash
 # 恢复暂存区的指定文件到工作区
@@ -300,7 +316,63 @@ $ git stash
 $ git stash pop
 ```
 
-## 其它
+### 设置 Git 代理
+
+- 设置
+
+  ```bash
+  git config --global http.proxy http://127.0.0.1:1087
+  git config --global https.proxy https://127.0.0.1:1087
+
+  # 只对 github.com
+  git config --global http.https://github.com.proxy http://127.0.0.1:1087
+  git config --global https.https://github.com.proxy https://127.0.0.1:1087
+  ```
+
+- 取消
+
+  ```bash
+  git config --global --unset http.proxy
+  git config --global --unset https.proxy
+
+  # github.com
+  git config --global --unset http.https://github.com.proxy
+  git config --global --unset https.https://github.com.proxy
+  ```
+
+- 设置终端临时代理
+
+  ```bash
+  export http_proxy=http://127.0.0.1:1080
+  export https_proxy=http://127.0.0.1:1080
+  curl https://www.google.com # 测试
+  ```
+
+### 设置 SSH 代理
+
+```bash
+# 这里的 -a none 是 NO-AUTH 模式，参见 https://bitbucket.org/gotoh/connect/wiki/Home 中的 More detail 一节
+ProxyCommand connect -S 127.0.0.1:1080 -a none %h %p
+
+Host github.com
+  User git
+  Port 22
+  Hostname github.com
+  # 注意修改路径为你的路径
+  IdentityFile "C:\Users\bookey\.ssh\id_rsa"
+  TCPKeepAlive yes
+
+Host ssh.github.com
+  User git
+  Port 443
+  Hostname ssh.github.com
+  # 注意修改路径为你的路径
+  IdentityFile "C:\Users\bookey\.ssh\id_rsa"
+  TCPKeepAlive yes
+```
+
+
+### 其它
 
 ```bash
 # 生成一个可供发布的压缩包
