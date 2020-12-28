@@ -7,7 +7,7 @@
     - [线程安全集合](#线程安全集合)
   - [并发](#并发)
     - [线程](#线程)
-    - [`ExecutorService` 和 `Thread Pools`](#executorservice-和-thread-pools)
+    - [线程池](#线程池)
     - [死锁/活锁/饥饿锁 乐观锁/悲观锁](#死锁活锁饥饿锁-乐观锁悲观锁)
     - [CountDownLatch/Semaphore](#countdownlatchsemaphore)
 
@@ -173,7 +173,7 @@
 - 等待
   - 使用 `join()`
 
-### `ExecutorService` 和 `Thread Pools`
+### 线程池
 
 - Executors 框架
   - 优点

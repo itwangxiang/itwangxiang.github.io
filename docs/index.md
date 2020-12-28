@@ -10,13 +10,9 @@
 ### [Java](md/language/java.md) - [思维导图](mind/Java.pdf)
 
 - [集合](md/language/java.md#集合)
-  - [非线程安全集合](md/language/java.md#非线程安全集合)
-  - [线程安全集合](md/language/java.md#线程安全集合)
 - [并发](md/language/java.md#并发)
   - [线程](md/language/java.md#线程)
-  - [`ExecutorService` 和 `Thread Pools`](#executorservice-和-thread-pools)
-  - [死锁/活锁/饥饿锁 乐观锁/悲观锁](#死锁活锁饥饿锁-乐观锁悲观锁)
-  - [CountDownLatch/Semaphore](#countdownlatchsemaphore)
+  - [线程池](md/language/java.md#线程池)
 
 ### [Kotlin](md/language/kotlin.md)
 
@@ -38,6 +34,11 @@
   - [低功耗蓝牙](md/android.md#低功耗蓝牙Bluetooth-Low-Energy)
   - [串口通信](md/android.md#串口通信)
 
+### Database
+
+- [Mysql](md/database/mysql.md)
+- [Mongodb](md/database/mongodb.md)
+
 ### [Flutter](md/flutter.md)
 
 ### [Nginx](md/nginx.md)
@@ -51,10 +52,6 @@
 - [Linux](md/os/linux.md)
 - [Ubuntu](md/os/ubuntu.md)
 - [Centos](md/os/centos.md)
-
-### Database
-
-- [Mysql](md/database/mysql.md)
 
 ### Tool
 
