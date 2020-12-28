@@ -2,10 +2,14 @@
 
 ## 目录
 
-### [Basic](md/language/basic.md) - [思维导图](mind/Basic.pdf)
+### Basic - [思维导图](mind/Basic.pdf)
 
-- [算法](md/language/basic.md#算法)
-- [设计模式](md/language/basic.md#设计模式)
+- [计算机组成原理](md/basic/computer-organization.md)
+- [计算机操作系统](md/basic/operating-system.md)
+- [计算机编译原理](md/basic/computer-organization.md)
+- [数据结构与算法](md/basic/data-structure-algorithm.md)
+- [计算机网络](md/basic/computer-network.md)
+- [设计模式](md/basic/design-pattern.md)
 
 ### [Java](md/language/java.md) - [思维导图](mind/Java.pdf)
 

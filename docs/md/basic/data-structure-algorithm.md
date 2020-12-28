@@ -1,13 +1,15 @@
 
-## Basic
+# 数据结构与算法
 
-### 算法
+## 数据结构
 
-#### 排序算法
+## 算法
+
+### 排序算法
 
 > 对一序列对象根据某个关键字进行排序
 
-##### 冒泡排序
+#### 冒泡排序
 
 ```java
 public static void bubbleSort(int[] array) {
@@ -21,7 +23,7 @@ public static void bubbleSort(int[] array) {
 }
 ```
 
-##### 选择排序
+#### 选择排序
 
 ```java
 public static void selectionSort(int[] arr) {
@@ -74,26 +76,3 @@ public static void quickSort(int[] arr, int head, int tail) {
     quickSort(arr, i, tail);
 }
 ```
-
-### 设计模式
-
-- 相关书籍
-  - [HeadFirst_设计模式.pdf](asset/pdf/HeadFirst_设计模式.pdf)
-  - [设计模式_可复用面向对象软件的基础.pdf](asset/pdf/设计模式_可复用面向对象软件的基础.pdf)
-
-#### 创建型
-
-- 工厂方法模式 `Factory Method Pattern`
-  - UML 图
-  ![factory](asset/img/factory_method.jpg)
-  - Code
-    - [FactoryMethodPattern.java](code/java/src/cn/todev/examples/pattern/FactoryMethodPattern.java)
-  - Java 中用例
-    - [java.util.Calendar](https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
-
-- 建造者模式 `Builder Pattern`
-- 单例模式 `Singleton Pattern`
-
-#### 结构型
-
-#### 行为型
