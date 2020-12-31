@@ -1,75 +1,103 @@
-# 技术博客
+# 个人博客
 
-## 目录
+> [2021 规划](log/2021-annual-plan.md)/[2020 总结](log/2020-year-end-summary.md)
 
-### Basic - [思维导图](mind/Basic.pdf)
+## 技术 - [Todo](development/todo.md)
 
-- [计算机组成原理](md/basic/computer-organization.md)
-- [计算机操作系统](md/basic/operating-system.md)
-- [计算机编译原理](md/basic/computer-organization.md)
-- [数据结构与算法](md/basic/data-structure-algorithm.md)
-- [计算机网络](md/basic/computer-network.md)
-- [设计模式](md/basic/design-pattern.md)
+### 基础 - [思维导图](mind/Basic.pdf)
 
-### [Java](md/language/java.md) - [思维导图](mind/Java.pdf)
+- [计算机组成原理](development/basic/computer-organization.md)
+- [计算机操作系统](development/basic/operating-system.md)
+- [计算机编译原理](development/basic/computer-organization.md)
+- [数据结构与算法](development/basic/data-structure-algorithm.md)
+- [计算机网络](development/basic/computer-network.md)
+- [设计模式](development/basic/design-pattern.md)
 
-- [集合](md/language/java.md#集合)
-- [并发](md/language/java.md#并发)
-  - [线程](md/language/java.md#线程)
-  - [线程池](md/language/java.md#线程池)
+### 语言
 
-### [Kotlin](md/language/kotlin.md)
+#### [Java](development/language/java.md) - [思维导图](mind/Java.pdf)
 
-- [基础](md/language/kotlin.md#基础)
-  - [基础语法](md/language/kotlin.md#基础语法)
-  - [惯用语法](md/language/kotlin.md#惯用语法)
+- [集合](development/language/java.md#集合)
+- [并发](development/language/java.md#并发)
+  - [线程](development/language/java.md#线程)
+  - [线程池](development/language/java.md#线程池)
 
-### [Golang](md/language/golang.md)
+#### [Kotlin](development/language/kotlin.md)
 
-- [交叉编译](md/language/golang.md#交叉编译)
+- [基础](development/language/kotlin.md#基础)
+  - [基础语法](development/language/kotlin.md#基础语法)
+  - [惯用语法](development/language/kotlin.md#惯用语法)
 
-### [Android](md/android.md) - [思维导图](mind/Android.pdf)
+#### [Golang](development/language/golang.md)
 
-- [基础篇](md/android.md#基础篇)
-- [原理篇](md/android.md#原理篇)
-- [核心篇](md/android.md#核心篇)
-- [开源篇](md/android.md#开源篇)
-- [外设篇](md/android.md#外设篇)
-  - [低功耗蓝牙](md/android.md#低功耗蓝牙Bluetooth-Low-Energy)
-  - [串口通信](md/android.md#串口通信)
+- [交叉编译](development/language/golang.md#交叉编译)
 
-### Database
+### 前端
 
-- [Mysql](md/database/mysql.md)
-- [Mongodb](md/database/mongodb.md)
+#### [Android](development/android.md) - [思维导图](mind/Android.pdf)
 
-### [Flutter](md/flutter.md)
+- [基础篇](development/android.md#基础篇)
+- [原理篇](development/android.md#原理篇)
+- [核心篇](development/android.md#核心篇)
+- [开源篇](development/android.md#开源篇)
+- [外设篇](development/android.md#外设篇)
+  - [低功耗蓝牙](development/android.md#低功耗蓝牙Bluetooth-Low-Energy)
+  - [串口通信](development/android.md#串口通信)
 
-### [Nginx](md/nginx.md)
+#### [Flutter](development/flutter.md)
 
-### [Docker](md/docker.md)
+### 数据库
 
-### OS
+#### [Mysql](development/database/mysql.md)
 
-- [Mac](md/os/mac.md)
-  - [用户环境变量](md/os/mac.md#用户环境变量)
-- [Linux](md/os/linux.md)
-- [Ubuntu](md/os/ubuntu.md)
-- [Centos](md/os/centos.md)
+#### [Mongodb](development/database/mongodb.md)
+
+### 运维
+
+#### [Docker](development/docker.md)
+
+#### [Nginx](development/nginx.md)
+
+### 系统
+
+#### [Mac](development/os/mac.md)
+
+- [用户环境变量](development/os/mac.md#用户环境变量)
+
+#### [Linux](development/os/linux.md)
+
+#### [Ubuntu](development/os/ubuntu.md)
+
+#### [Centos](development/os/centos.md)
 
 ### Tool
 
 - Google
-  - [搜索技巧](md/tool/google.md#搜索技巧)
-- [Git](md/tool/git.md)
-  - [设置 Git 代理](md/tool/git.md#设置-git-代理)
-  - [设置 SSH 代理](md/tool/git.md#设置-ssh-代理)
-  - [Commit Message 规范](md/tool/git-commit-message-specification.md)
-- [Vim](md/tool/vim.md)
-- [ADB](md/android/adb.md)
+  - [搜索技巧](development/tool/google.md#搜索技巧)
+- [Git](development/tool/git.md)
+  - [设置 Git 代理](development/tool/git.md#设置-git-代理)
+  - [设置 SSH 代理](development/tool/git.md#设置-ssh-代理)
+  - [Commit Message 规范](development/tool/git-commit-message-specification.md)
+- [Vim](development/tool/vim.md)
+- [ADB](development/android/adb.md)
 
 ### Asset
 
 - book
   - [设计模式_可复用面向对象软件的基础](asset/pdf/设计模式_可复用面向对象软件的基础.pdf)
   - [HeadFirst_设计模式](asset/pdf/HeadFirst_设计模式.pdf)
+
+## 生活
+
+### 厨艺
+
+#### 荤菜
+
+- [ ] 红烧肉
+- [ ] 红烧鲫鱼
+
+### 阅读
+
+#### 三观
+
+- [ ] 人生的智慧
