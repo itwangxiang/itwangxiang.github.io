@@ -2,6 +2,12 @@
 
 - [Android](#android)
   - [基础篇](#基础篇)
+    - [四大组件](#四大组件)
+      - [Activity](#activity)
+      - [Service](#service)
+      - [布局](#布局)
+      - [View](#view)
+      - [其他](#其他)
   - [原理篇](#原理篇)
     - [View 绘制](#view-绘制)
     - [Touch 事件传递机制](#touch-事件传递机制)
@@ -38,54 +44,59 @@
 
 ## 基础篇
 
-- 四大组件
+### 四大组件
 
-  - Activity
-    - [生命周期](https://developer.android.com/guide/components/activities/activity-lifecycle#java)
-      > onCreate -> onStart -> onResume -> onPause -> onStop -> onDestory
-    - [启动模式](https://developer.android.com/guide/components/activities/tasks-and-back-stack#TaskLaunchModes)
-      - standard
-      - singleTop
-      - singleTask
-      - singleInstance
-  - Service
-    - startService
-      > `onCreate()` 、`onStartCommand()`、`onStart()`、`onDestroy()`
-    - bindService
-      > `bindService()`、`onCreate()` 、`IBinder onBind(Intent intent)`、`unBindService()`、`onDestroy()`
-  - BroadcastReceiver
-    - 作用：从 Android 系统和其他 Android 应用程序发送或接收广播消息
-    - 注册方式：静态/动态
-    - 类型
-      - 普通广播 `Normal Broadcast`
-      - 系统广播 `System Broadcast`
-      - 有序广播 `Ordered Broadcast`
-      - 粘性广播 `Sticky Broadcast`
-      - 应用内广播 `Local Broadcast`
-  - Content Provider
+#### Activity
 
-- 布局
+- [生命周期](https://developer.android.com/guide/components/activities/activity-lifecycle#java)
+  > onCreate -> onStart -> onResume -> onPause -> onStop -> onDestory
+- [启动模式](https://developer.android.com/guide/components/activities/tasks-and-back-stack#TaskLaunchModes)
+  - standard
+  - singleTop
+  - singleTask
+  - singleInstance
 
-  - LinearLayout
-  - RelativeLayout
-  - FrameLayout
-  - TableLayout
+#### Service
 
-- View
-  - `SurfaceView`
-    - 双缓冲机制
-    - 子线程绘制
-  - `TextureView`  
-    - TextureView可用于显示内容流。
-    - 例如，这样的内容流可以是视频或OpenGL场景。
-    - 内容流可以来自应用程序的进程，也可以来自远程进程
-  - `VideoView`
-  - `WebView`
+- startService
+  > `onCreate()` 、`onStartCommand()`、`onStart()`、`onDestroy()`
+- bindService
+  > `bindService()`、`onCreate()` 、`IBinder onBind(Intent intent)`、`unBindService()`、`onDestroy()`
+- BroadcastReceiver
+- 作用：从 Android 系统和其他 Android 应用程序发送或接收广播消息
+- 注册方式：静态/动态
+- 类型
+  - 普通广播 `Normal Broadcast`
+  - 系统广播 `System Broadcast`
+  - 有序广播 `Ordered Broadcast`
+  - 粘性广播 `Sticky Broadcast`
+  - 应用内广播 `Local Broadcast`
+- Content Provider
 
-- 其他
-  - AlertDialog,popupWindow,Activity 的区别
-  - Application 和 Activity 的 Context 对象的区别
-  - BroadcastReceiver，LocalBroadcastReceiver 的区别
+#### 布局
+
+- LinearLayout
+- RelativeLayout
+- FrameLayout
+- TableLayout
+
+#### View
+
+- `SurfaceView`
+  - 双缓冲机制
+  - 子线程绘制
+- `TextureView`  
+  - TextureView可用于显示内容流。
+  - 例如，这样的内容流可以是视频或OpenGL场景。
+  - 内容流可以来自应用程序的进程，也可以来自远程进程
+- `VideoView`
+- `WebView`
+
+#### 其他
+
+- AlertDialog,popupWindow,Activity 的区别
+- Application 和 Activity 的 Context 对象的区别
+- BroadcastReceiver，LocalBroadcastReceiver 的区别
 
 ## 原理篇
 
