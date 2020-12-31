@@ -1,5 +1,7 @@
 # Android
 
+目录
+
 - [Android](#android)
   - [基础篇](#基础篇)
     - [四大组件](#四大组件)
@@ -38,9 +40,10 @@
     - [EventBus - 官网](#eventbus---官网)
     - [多渠道打包](#多渠道打包)
 
->系统架构图
+---
+![系统架构图](../asset/img/android_system_structure.png)
 
-![android_system_structure](../asset/img/android_system_structure.png)
+---
 
 ## 基础篇
 
@@ -59,18 +62,22 @@
 #### Service
 
 - startService
-  > `onCreate()` 、`onStartCommand()`、`onStart()`、`onDestroy()`
+
+  `onCreate()` 、`onStartCommand()`、`onStart()`、`onDestroy()`
+
 - bindService
-  > `bindService()`、`onCreate()` 、`IBinder onBind(Intent intent)`、`unBindService()`、`onDestroy()`
+
+  `bindService()`、`onCreate()` 、`IBinder onBind(Intent intent)`、`unBindService()`、`onDestroy()`
+
 - BroadcastReceiver
-- 作用：从 Android 系统和其他 Android 应用程序发送或接收广播消息
-- 注册方式：静态/动态
-- 类型
-  - 普通广播 `Normal Broadcast`
-  - 系统广播 `System Broadcast`
-  - 有序广播 `Ordered Broadcast`
-  - 粘性广播 `Sticky Broadcast`
-  - 应用内广播 `Local Broadcast`
+  - 作用：从 Android 系统和其他 Android 应用程序发送或接收广播消息
+  - 注册方式：静态/动态
+  - 类型
+    - 普通广播 `Normal Broadcast`
+    - 系统广播 `System Broadcast`
+    - 有序广播 `Ordered Broadcast`
+    - 粘性广播 `Sticky Broadcast`
+    - 应用内广播 `Local Broadcast`
 - Content Provider
 
 #### 布局
