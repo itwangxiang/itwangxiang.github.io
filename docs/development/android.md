@@ -52,7 +52,7 @@
 #### Activity
 
 - [生命周期](https://developer.android.com/guide/components/activities/activity-lifecycle#java)
-  > onCreate -> onStart -> onResume -> onPause -> onStop -> onDestory
+  onCreate -> onStart -> onResume -> onPause -> onStop -> onDestory
 - [启动模式](https://developer.android.com/guide/components/activities/tasks-and-back-stack#TaskLaunchModes)
   - standard
   - singleTop
