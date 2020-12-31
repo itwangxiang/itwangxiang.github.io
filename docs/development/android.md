@@ -1,5 +1,36 @@
-
 # Android
+
+- [Android](#android)
+  - [基础篇](#基础篇)
+  - [原理篇](#原理篇)
+    - [View 绘制](#view-绘制)
+    - [Touch 事件传递机制](#touch-事件传递机制)
+    - [Handler](#handler)
+    - [AsyncTask Doc](#asynctask-doc)
+    - [ActivityThread](#activitythread)
+    - [内存泄露](#内存泄露)
+    - [内存溢出 - OOM](#内存溢出---oom)
+    - [ThreadLocal](#threadlocal)
+    - [LruCache 缓存策略](#lrucache-缓存策略)
+    - [屏幕刷新机制](#屏幕刷新机制)
+  - [优化篇](#优化篇)
+  - [视频篇](#视频篇)
+    - [关键术语和概念](#关键术语和概念)
+    - [解码](#解码)
+  - [网络篇](#网络篇)
+  - [外设篇](#外设篇)
+    - [低功耗蓝牙(Bluetooth Low Energy)](#低功耗蓝牙bluetooth-low-energy)
+    - [串口通信](#串口通信)
+      - [android-serialport-api](#android-serialport-api)
+  - [开源篇](#开源篇)
+    - [OkHttp - 官网](#okhttp---官网)
+    - [Retrofit - 官网](#retrofit---官网)
+    - [Glide - 官网](#glide---官网)
+    - [ButterKnife - 官网](#butterknife---官网)
+    - [Rxjava - 官网](#rxjava---官网)
+    - [Logger - 官网](#logger---官网)
+    - [EventBus - 官网](#eventbus---官网)
+    - [多渠道打包](#多渠道打包)
 
 >系统架构图
 
@@ -58,20 +89,21 @@
 
 ## 原理篇
 
-- View 绘制
-  - measure
-    - MeasureSpec
-      - `UNSPECIFIED` - 未明确模式
-      - `EXACTLY` - 精确模式
-      - `AT_MOST` - 最多模式
-  - layout
-  - draw
-    - `onDraw(Canvas canvas)`
+### View 绘制
 
-- Touch 事件传递机制
+- measure
+  - MeasureSpec
+    - `UNSPECIFIED` - 未明确模式
+    - `EXACTLY` - 精确模式
+    - `AT_MOST` - 最多模式
+- layout
+- draw
+  - `onDraw(Canvas canvas)`
 
-  - ViewGroup : `dispatchTouchEvent()` -> `onInterceptTouchEvent() == true` -> `onTouchListener.onTouch()` -> `onTouchEvent()` -> `onClick`
-  - View : `dispatchTouchEvent()` -> `onTouchListener.onTouch()` -> `onTouchEvent()` -> `onClick`
+### Touch 事件传递机制
+
+- ViewGroup : `dispatchTouchEvent()` -> `onInterceptTouchEvent() == true` -> `onTouchListener.onTouch()` -> `onTouchEvent()` -> `onClick`
+- View : `dispatchTouchEvent()` -> `onTouchListener.onTouch()` -> `onTouchEvent()` -> `onClick`
   
 - View 滑动冲突
   - 外部拦截法
@@ -159,31 +191,31 @@
       - 内部拦截法要求父View不能拦截ACTION_DOWN事件，由于ACTION_DOWN不受FLAG_DISALLOW_INTERCEPT标志位控制，一旦父容器拦截ACTION_DOWN那么所有的事件都不会传递给子View。
       - 滑动策略的逻辑放在子View的dispatchTouchEvent方法的ACTION_MOVE中，如果父容器需要获取点击事件则调用 parent.requestDisallowInterceptTouchEvent(false)方法，让父容器去拦截事件。
 
-- `Handler`
+### Handler
 
-  - `post` 流程
-    - 等待消息：Looper.loop();
-    - 消息入队：
-      1. Handler.sendMessage(msg)
-      2. Looper.MessageQueue.enqueueMessage(msg)
-    - 处理消息：Looper.loop();
-      1. 循环 MessageQueue.next()
-      2. 调用 `msg.target.dispatchMessage(msg)`
-    - 消息出队：
-      1. Handler.dispatchMessage(msg)
-      2. Handler.handleMessage(msg)
-  - `postDelayed` 流程
-    - 消息是通过 `MessageQueen` 中的 `enqueueMessage`()方法加入消息队列中的，并且它在放入中就进行好排序，链表头的延迟时间小，尾部延迟时间最大
-    - `Looper.loop()` 通过 `MessageQueue` 中的 `next()` 去取消息
-    - `next()` 中如果当前链表头部消息是延迟消息，则根据延迟时间进行消息队列会阻塞，不返回给 `Looper message`，知道时间到了，返回给 `message`
-    - 如果在阻塞中有新的消息插入到链表头部则唤醒线程
-    - `Looper` 将新消息交给回调给 `handler` 中的 `handleMessage` 后，继续调用 `MessageQueen` 的 `next()` 方法，如果刚刚的延迟消息还是时间未到，则计算时间继续阻塞
+- `post` 流程
+  - 等待消息：Looper.loop();
+  - 消息入队：
+    1. Handler.sendMessage(msg)
+    2. Looper.MessageQueue.enqueueMessage(msg)
+  - 处理消息：Looper.loop();
+    1. 循环 MessageQueue.next()
+    2. 调用 `msg.target.dispatchMessage(msg)`
+  - 消息出队：
+    1. Handler.dispatchMessage(msg)
+    2. Handler.handleMessage(msg)
+- `postDelayed` 流程
+  - 消息是通过 `MessageQueen` 中的 `enqueueMessage`()方法加入消息队列中的，并且它在放入中就进行好排序，链表头的延迟时间小，尾部延迟时间最大
+  - `Looper.loop()` 通过 `MessageQueue` 中的 `next()` 去取消息
+  - `next()` 中如果当前链表头部消息是延迟消息，则根据延迟时间进行消息队列会阻塞，不返回给 `Looper message`，知道时间到了，返回给 `message`
+  - 如果在阻塞中有新的消息插入到链表头部则唤醒线程
+  - `Looper` 将新消息交给回调给 `handler` 中的 `handleMessage` 后，继续调用 `MessageQueen` 的 `next()` 方法，如果刚刚的延迟消息还是时间未到，则计算时间继续阻塞
 
-- `AsyncTask` [Doc](https://developer.android.com/reference/android/os/AsyncTask)
+### AsyncTask [Doc](https://developer.android.com/reference/android/os/AsyncTask)
 
   > `AsyncTask` 可以正确，方便地使用 UI 线程。此类允许您执行后台操作并在 UI 线程上发布结果，而无需操作线程和/或处理程序
 
-- `ActivityThread`
+### ActivityThread
 
   它管理应用程序进程中主线程的执行，按照活动管理器的请求调度和执行活动、广播和其他操作
 
@@ -192,49 +224,48 @@
   3. 紧接着，应用程序的 Main Looper 被创建，ActivityThread 被实例化成为对象并将 Application 的信息以进程间通信的方式再次回馈给 AMS。
   4. AMS 接收到客户端发来的请求数据之后，首先将应用程序绑定，并启动应用程序的 Activity，开始执行 Activity 的生命周期
 
-- `内存泄露`
-  - 场景
-    - 单例
-    - 匿名内部类
-    - Context
-    - Handler
-    - Cursor，Stream
-    - WebView
-  - 排查工具
-    - dumpsys
+### 内存泄露
 
-      ```bash
-      adb shell dumpsys meminfo <packageName>
-      ```
+- 场景
+  - 单例
+  - 匿名内部类
+  - Context
+  - Handler
+  - Cursor，Stream
+  - WebView
+- 排查工具
+  - dumpsys
 
-    - LeakCanary
+    ```bash
+    adb shell dumpsys meminfo <packageName>
+    ```
 
-- `内存溢出 - OOM`
-  - 原因
-    - 内存泄露
-    - 内存占用过多的对象
+  - LeakCanary
 
-- `ThreadLocal`
-- `LruCache` 缓存策略
+### 内存溢出 - OOM
 
-  > 包含对有限数量值的强引用的缓存。每次访问一个值时，它都会移动到队列的头部。将值添加到完整缓存时，该队列末尾的值将被逐出，并且可能符合垃圾回收的条件
+- 原因
+  - 内存泄露
+  - 内存占用过多的对象
 
-  - 原理：
-    - `LruCache` 中维护了一个 `LinkedHashMap` 集合并将其设置顺序排序。
-    - 当调用 `put()` 方法时，就会在集合中添加元素，并调用 `trimToSize()` 判断缓存是否已满，如果满了就用 `LinkedHashMap` 的迭代器删除队尾元素，即近期最少访问的元素。
-    - 当调用 `get()` 方法访问缓存对象时，就会调用 `LinkedHashMap` 的 `get()` 方法获得对应集合元素，同时会更新该元素到队头
+### ThreadLocal
 
-- 屏幕刷新机制
+### LruCache 缓存策略
 
-  - Android 应用程序调用 SurfaceFlinger 服务把经过测量、布局和绘制后的 Surface 渲染到显示屏幕上
+> 包含对有限数量值的强引用的缓存。每次访问一个值时，它都会移动到队列的头部。将值添加到完整缓存时，该队列末尾的值将被逐出，并且可能符合垃圾回收的条件
 
-  - `参考资料`
-    - [Android 显示原理简介](http://djt.qq.com/article/view/987)
+- 原理：
+  - `LruCache` 中维护了一个 `LinkedHashMap` 集合并将其设置顺序排序。
+  - 当调用 `put()` 方法时，就会在集合中添加元素，并调用 `trimToSize()` 判断缓存是否已满，如果满了就用 `LinkedHashMap` 的迭代器删除队尾元素，即近期最少访问的元素。
+  - 当调用 `get()` 方法访问缓存对象时，就会调用 `LinkedHashMap` 的 `get()` 方法获得对应集合元素，同时会更新该元素到队头
 
-- ANR 产生的原因，以及如何定位和修正
-- OOM 是什么？以及如何避免？
-- 内存泄漏和内存溢出区别？
-- 为什么不能在子线程更新 UI
+### 屏幕刷新机制
+
+- Android 应用程序调用 SurfaceFlinger 服务把经过测量、布局和绘制后的 Surface 渲染到显示屏幕上
+
+> 参考资料
+
+- [Android 显示原理简介](http://djt.qq.com/article/view/987)
 
 ## 优化篇
 
@@ -250,66 +281,7 @@
 
 ## 视频篇
 
-## 网络篇
-
-## 开源篇
-
-- [OkHttp](https://github.com/square/okhttp)
-
-  > 适用于 Android 和 Java 应用程序的 HTTP + HTTP/2 客户端
-
-  - OkHttp 支持同步调用和异步调用
-  - OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接
-  - 如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率
-  - OkHttp 提供了对 GZIP 的默认支持来降低传输内容的大小
-  - OkHttp 也提供了对 HTTP 响应的缓存机制，可以避免不必要的网络请求
-  - 当网络出现问题时，OkHttp 会自动重试一个主机的多个 IP 地址
-
-- Retrofit [官网](https://github.com/square/retrofit)
-
-  > 适用于 Android 和 Java 的类型安全的 HTTP 客户端
-
-  - 默认基于 OkHttp 封装的一套 RESTful 网络请求框架
-  - 通过注解直接配置请求
-  - 使用不同 Json Converter 来序列化数据
-  - 提供对 RxJava 的支持
-
-- Glide [官网](https://github.com/bumptech/glide)
-
-  > Glide 是一个快速高效的 Android 图片加载库，注重于平滑的滚动
-
-  - Glide 支持拉取，解码和展示视频快照，图片，和 GIF 动画
-  - Glide 使用简明的流式语法 API
-
-- ButterKnife [官网](https://github.com/JakeWharton/butterknife)
-
-  > 将 Android 视图和回调绑定到字段和方法
-
-  - 通过在字段上使用 `@BindView` 消除 `findViewById` 回调
-  - 在列表或数组中组合多个视图。一次性使用操作，设置器或属性操作它们
-  - 通过使用`@OnClick`和其他方法注释方法来消除侦听器的匿名内部类
-  - 通过在字段上使用资源注释来消除资源查找
-
-- Rxjava [官网](https://github.com/ReactiveX/RxJava)
-
-  > RxJava - JVM 的 Reactive Extensions - 一个使用 Java VM 的可观察序列组成异步和基于事件的程序的库
-
-  - 基于事件流的链式调用、逻辑简洁 & 使用简单
-  - 扩展了观察者模式，以支持数据/事件序列，并增加了操作符，他可以将将序列清晰的组合在一起的
-
-- Logger [官网](https://github.com/orhanobut/logger)
-
-  > 简单，漂亮，功能强大的 android 记录器
-
-- EventBus [官网](https://github.com/greenrobot/EventBus) - [源码](development/android/EventBus.md)
-
-  > 适用于 Android 和 Java 的事件总线，可简化 Activities, Fragments, Threads, Services 等之间的通信。减少代码，提高质量
-
-- 批量渠道打包
-
-  - [AndroidMultiChannelBuildTool](https://github.com/GavinCT/AndroidMultiChannelBuildTool)
-
-#### 关键术语和概念
+### 关键术语和概念
 
 - `视频` - 泛指将一系列的静态影像以电信号方式加以捕捉、纪录、处理、存储、发送与重现的各种技术
 - `帧率` - 用于测量显示帧数的量度
@@ -340,7 +312,7 @@
   - 缓冲
   - 渲染
 
-#### 解码
+### 解码
 
 - 硬解 - 硬件解码是图形芯片厂商提出的用GPU资源解码视频流的方案
   - `MediaPlayer`
@@ -351,9 +323,11 @@
   - `FFmpeg`
     - 代表播放器 - Bilibili 的 [ijkplayer](https://github.com/Bilibili/ijkplayer)
 
-### 外设篇
+## 网络篇
 
-#### [低功耗蓝牙(Bluetooth Low Energy)](https://developer.android.com/guide/topics/connectivity/bluetooth-le)
+## 外设篇
+
+### [低功耗蓝牙(Bluetooth Low Energy)](https://developer.android.com/guide/topics/connectivity/bluetooth-le)
 
 - 关键术语和概念
   - 通用属性配置文件 `Generic Attribute Profile` (GATT) - GATT 配置文件是一种通用规范，内容针对在 BLE 链路上发送和接收称为“属性”的简短数据片段
@@ -508,3 +482,62 @@
   - 包名 - `android_serialport_api`
   - 写入权限时，`/system/xbin/su` or `/system/bin/su`
   - 设备需要 Root 权限
+
+## 开源篇
+
+### OkHttp - [官网](https://github.com/square/okhttp)
+
+> 适用于 Android 和 Java 应用程序的 HTTP + HTTP/2 客户端
+
+- OkHttp 支持同步调用和异步调用
+- OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接
+- 如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率
+- OkHttp 提供了对 GZIP 的默认支持来降低传输内容的大小
+- OkHttp 也提供了对 HTTP 响应的缓存机制，可以避免不必要的网络请求
+- 当网络出现问题时，OkHttp 会自动重试一个主机的多个 IP 地址
+
+### Retrofit - [官网](https://github.com/square/retrofit)
+
+> 适用于 Android 和 Java 的类型安全的 HTTP 客户端
+
+- 默认基于 OkHttp 封装的一套 RESTful 网络请求框架
+- 通过注解直接配置请求
+- 使用不同 Json Converter 来序列化数据
+- 提供对 RxJava 的支持
+
+### Glide - [官网](https://github.com/bumptech/glide)
+
+> Glide 是一个快速高效的 Android 图片加载库，注重于平滑的滚动
+
+- Glide 支持拉取，解码和展示视频快照，图片，和 GIF 动画
+- Glide 使用简明的流式语法 API
+
+### ButterKnife - [官网](https://github.com/JakeWharton/butterknife)
+
+> 将 Android 视图和回调绑定到字段和方法
+
+- 通过在字段上使用 `@BindView` 消除 `findViewById` 回调
+- 在列表或数组中组合多个视图。一次性使用操作，设置器或属性操作它们
+- 通过使用`@OnClick`和其他方法注释方法来消除侦听器的匿名内部类
+- 通过在字段上使用资源注释来消除资源查找
+
+### Rxjava - [官网](https://github.com/ReactiveX/RxJava)
+
+> RxJava - JVM 的 Reactive Extensions - 一个使用 Java VM 的可观察序列组成异步和基于事件的程序的库
+
+- 基于事件流的链式调用、逻辑简洁 & 使用简单
+- 扩展了观察者模式，以支持数据/事件序列，并增加了操作符，他可以将将序列清晰的组合在一起的
+
+### Logger - [官网](https://github.com/orhanobut/logger)
+
+> 简单，漂亮，功能强大的 android 记录器
+
+### EventBus - [官网](https://github.com/greenrobot/EventBus)
+
+- [源码分析](development/android/EventBus.md)
+
+> 适用于 Android 和 Java 的事件总线，可简化 Activities, Fragments, Threads, Services 等之间的通信。减少代码，提高质量
+
+### 多渠道打包
+
+- [AndroidMultiChannelBuildTool](https://github.com/GavinCT/AndroidMultiChannelBuildTool)
