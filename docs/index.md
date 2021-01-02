@@ -1,6 +1,6 @@
 # 个人博客
 
-> [2021 规划](log/2021-annual-plan.md)/[2020 总结](log/2020-year-end-summary.md)
+[2021 规划](log/2021-annual-plan.md)
 
 ## 技术 - [Todo](development/todo.md)
 
