@@ -28,3 +28,33 @@ EOF
 $sudo systemctl daemon-reload
 $sudo systemctl restart docker
 ```
+
+## Other
+
+### mongodb
+
+```bash
+$sudo mkdir -p /mongodata
+$sudo docker run -d --restart=always -v mongodata:/data/db -p 33017:27017 --name mongo mongo --auth
+# 设置密码
+$sudo docker exec -it mongo mongo admin
+$use admin
+$db.createUser({
+  user: 'admin',  // 用户名
+  pwd: '******',  // 密码
+  roles:[{
+    role: 'root',  // 角色
+    db: 'admin'  // 数据库
+  }]
+})
+$db.auth('admin','******')
+$use wxiang
+$db.createUser({
+  user: 'wxiang',  // 用户名
+  pwd: '******',  // 密码
+  roles:[{
+    role: 'dbOwner',  // 角色
+    db: 'wxiang'  // 数据库
+  }]
+})
+```
