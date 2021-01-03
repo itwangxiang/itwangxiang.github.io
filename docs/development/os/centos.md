@@ -102,7 +102,8 @@ passwd
 ### firewall 命令 （centos 默认会开启防火墙，需要开启端口才能被访问）
 
 ```bash
-firewall-cmd --list-ports # 查看端口
-firewall-cmd --zone=public --add-port=80/tcp --permanent # 开启端口
-firewall-cmd --reload # 重启防火墙
+$firewall-cmd --state # 查看防火墙
+$firewall-cmd --list-ports # 查看端口
+$firewall-cmd --zone=public --add-port=80/tcp --permanent # 开启端口
+$firewall-cmd --reload # 重启防火墙
 ```
