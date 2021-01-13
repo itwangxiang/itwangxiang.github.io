@@ -29,7 +29,7 @@ $sudo systemctl daemon-reload
 $sudo systemctl restart docker
 ```
 
-## Other
+## 部署示例
 
 ### mongodb
 
@@ -57,4 +57,19 @@ $db.createUser({
     db: 'wxiang'  // 数据库
   }]
 })
+```
+
+### jenkins
+
+```bash
+docker run \
+  -u root \
+  --restart=always \
+  -d \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  -v jenkins-data:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  --name jenkins \
+  jenkinsci/blueocean
 ```

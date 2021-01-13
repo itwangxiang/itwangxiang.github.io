@@ -62,6 +62,10 @@
 
 #### [Nginx](development/nginx.md)
 
+#### jenkins - 自动部署
+
+- [docker 安装](development/docker.md#jenkins)
+
 ### 系统
 
 #### [Mac](development/os/mac.md)
