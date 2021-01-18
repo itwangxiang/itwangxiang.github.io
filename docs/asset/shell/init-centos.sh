@@ -19,8 +19,8 @@ systemctl enable docker
 mkdir -p /etc/docker
 tee /etc/docker/daemon.json <<-'EOF'
 {
-	  "registry-mirrors": ["https://mirror.ccs.tencentyun.com"]
-  }
+  "registry-mirrors": ["https://mirror.ccs.tencentyun.com"]
+}
 EOF
 systemctl daemon-reload
 systemctl restart docker
