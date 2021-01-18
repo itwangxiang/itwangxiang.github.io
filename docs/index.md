@@ -71,7 +71,7 @@
 - [init-centos.sh](asset/shell/init-centos.sh)
   
   ```bash
-  $wget --no-check-certificate https://raw.githubusercontent.com/itwangxiang/itwangxiang.github.io/main/docs/asset/shell/init-centos.sh && chmod +x init-centos.sh && ./init-centos.sh
+  $wget --no-check-certificate https://wxiang.cc/asset/shell/init-centos.sh && chmod +x init-centos.sh && ./init-centos.sh
   ```
 
 ### 系统
