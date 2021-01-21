@@ -377,4 +377,9 @@ Host ssh.github.com
 ```bash
 # 生成一个可供发布的压缩包
 $ git archive
+
+# 暂时忽略个别文件的变动
+$ git update-index --assume-unchanged  #忽略
+$ git update-index --no-assume-unchanged # 取消忽略
+
 ```
