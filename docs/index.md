@@ -66,6 +66,14 @@
 
 - [docker 安装](development/docker.md#jenkins)
 
+#### nodebb
+
+```bash
+docker network create nodebb-net
+docker run -d --name mongo --restart always --network nodebb-net -v mongo-data:/data/db -p 127.0.0.1:27017:27017 mongo --wiredTigerCacheSizeGB 1
+docker run -d --name nodebb --restart always --network nodebb-net -p 4567:4567 --link mongo:mongo nodebb/docker
+```
+
 #### 脚本
 
 - [init-centos.sh](asset/shell/init-centos.sh)
