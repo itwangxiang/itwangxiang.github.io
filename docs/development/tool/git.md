@@ -343,9 +343,14 @@ $ git stash pop
 - 设置终端临时代理
 
   ```bash
-  export http_proxy=http://127.0.0.1:1080
-  export https_proxy=http://127.0.0.1:1080
-  curl https://www.google.com # 测试
+  $export http_proxy=http://127.0.0.1:1080
+  $export https_proxy=http://127.0.0.1:1080
+  $curl https://www.google.com # 测试
+  ```
+
+  ```bash
+  $Env:http_proxy="http://127.0.0.1:1080";
+  $Env:https_proxy="http://127.0.0.1:1080";
   ```
 
 ### 设置 SSH 代理
