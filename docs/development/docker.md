@@ -77,6 +77,15 @@ $docker exec -it mysql mysql -uroot -p
 # 设置 db 密码
 $CREATE USER 'nacos'@'%' IDENTIFIED BY '******';
 $GRANT ALL ON nacos.* TO 'nacos'@'%';
+
+
+# 设置内存 
+$docker exec -it mysql bash
+$vi /etc/mysql/conf.d/docker.cnf
+performance_schema_max_table_instances=400
+table_definition_cache=400
+table_open_cache=256
+performance_schema = off
 ```
 
 ### Redis
