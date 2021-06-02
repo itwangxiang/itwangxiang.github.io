@@ -31,23 +31,26 @@ $sudo systemctl restart docker
 
 ## 部署示例
 
-### mongodb
+### Network
 
 ```bash
-$sudo mkdir -p /mongodata
-$sudo docker run -d --restart=always -v mongodata:/data/db -p 33017:27017 --name mongo mongo --auth
-# 设置密码
-$sudo docker exec -it mongo mongo admin
-$use admin
-$db.createUser({
-  user: 'admin',  // 用户名
-  pwd: '******',  // 密码
-  roles:[{
-    role: 'root',  // 角色
-    db: 'admin'  // 数据库
-  }]
-})
+$sudo docker network create -d bridge --subnet 172.25.0.0/24 mydev;
+```
+
+### Mongodb
+
+```bash
+# 部署 mongodb://admin:d*w*4**@ip
+$sudo docker run -d --restart=always --net mydev --name mongo -h mongo -v mongo-db:/data/db -v mongo-configdb:/data/configdb -p 27017:27017 \
+    -e MONGO_INITDB_ROOT_USERNAME=admin \
+    -e MONGO_INITDB_ROOT_PASSWORD=****** \
+    mongo
+
+# shell 连接, 并登录
+$docker exec -it mongo mongo admin
 $db.auth('admin','******')
+
+# 设置 db 密码
 $use wxiang
 $db.createUser({
   user: 'wxiang',  // 用户名
@@ -57,6 +60,56 @@ $db.createUser({
     db: 'wxiang'  // 数据库
   }]
 })
+
+```
+
+### Mysql
+
+```bash
+# 部署 
+$sudo docker run -d --restart=always --net mydev --name mysql -h mysql -v mysql-data:/var/lib/mysql -p 3306:3306 \
+    -e MYSQL_ROOT_PASSWORD=****** \
+    mysql
+
+# shell 链接
+$docker exec -it mysql mysql -uroot -p 
+
+# 设置 db 密码
+$CREATE USER 'nacos'@'%' IDENTIFIED BY '******';
+$GRANT ALL ON nacos.* TO 'nacos'@'%';
+```
+
+### Redis
+
+```bash
+# 部署
+$sudo docker run -d --restart=always --net mydev --name redis -h redis -v redis-data:/data -p 6379:6379 \
+    redis \
+    --requirepass "******"
+
+# shell 链接
+$docker exec -it redis redis-cli -a ******
+```
+
+### Nacos
+
+```bash
+# 部署
+$sudo docker run -d --restart=always --net mydev --name nacos -h nacos -p 8848:8848 \
+    -e MODE=standalone \
+    -e PREFER_HOST_MODE=hostname \
+    -e SPRING_DATASOURCE_PLATFORM=mysql \
+    -e MYSQL_SERVICE_HOST=mysql \
+    -e MYSQL_SERVICE_PORT=3306 \
+    -e MYSQL_SERVICE_DB_NAME=nacos \
+    -e MYSQL_SERVICE_USER=****** \
+    -e MYSQL_SERVICE_PASSWORD=****** \
+    -e JVM_XMS=64m \
+    -e JVM_XMX=64m \
+    -e JVM_XMN=16m \
+    -e JVM_MS=8m \
+    -e JVM_MMS=8m \
+    nacos/nacos-server
 ```
 
 ### jenkins
