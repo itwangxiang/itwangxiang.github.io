@@ -124,15 +124,12 @@ $sudo docker run -d --restart=always --net mydev --name nacos -h nacos -p 8848:8
 ### jenkins
 
 ```bash
-docker run \
-  -u root \
-  --restart=always \
-  -d \
-  -p 8080:8080 \
+$sudo docker run -d --restart=always --net mydev --name jenkins -h jenkins \
+  -p 50080:8080 \
   -p 50000:50000 \
+  -e JENKINS_JAVA_OPTIONS='-XX:MaxPermSize=512m -Djava.awt.headless=true' \
   -v jenkins-data:/var/jenkins_home \
-  -v "$HOME":/home \
+  -v jenkins-home:/home \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  --name jenkins \
   jenkinsci/blueocean
 ```
