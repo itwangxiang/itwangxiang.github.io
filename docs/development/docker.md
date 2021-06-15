@@ -1,5 +1,55 @@
 # Docker
 
+## [安装](https://docs.docker.com/engine/install/centos/)
+
+```bash
+# 脚本安装
+## 官方
+$curl -sSL https://get.docker.com/ | sh
+## 阿里云
+$curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+
+# centos
+
+$yum update
+
+## 卸载旧版本
+$sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+## 使用仓库安装
+### 设置一个仓库
+$sudo yum install -y yum-utils
+#### 官方
+$sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+#### 阿里云    
+$sudo yum-config-manager \
+    --add-repo \
+    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+### 安装最新的引擎
+$sudo yum install docker-ce docker-ce-cli containerd.io
+### 启动 docker
+$sudo systemctl start docker
+### 设置随系统重启
+$sudo systemctl enable docker
+### 设置加速代理（https://mirror.ccs.tencentyun.com）（https://78hmjqgm.mirror.aliyuncs.com）
+$sudo mkdir -p /etc/docker
+$sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://mirror.ccs.tencentyun.com"]
+}
+EOF
+$sudo systemctl daemon-reload
+$sudo systemctl restart docker
+```
+
 ## Command
 
 ### [Exec](https://docs.docker.com/engine/reference/commandline/exec/)
@@ -15,19 +65,6 @@ docker logs [OPTIONS] CONTAINER
   - `--follow , -f` - 跟踪日志输出
   - `--tail` - 从日志末尾开始显示的行数
   - `--since` - 显示自时间戳记以来的日志（例如2013-01-02T13：23：37）或相对时间（例如42m，持续42分钟）
-
-## 代理
-
-```bash
-$sudo mkdir -p /etc/docker
-$sudo tee /etc/docker/daemon.json <<-'EOF'
-{
-  "registry-mirrors": ["<your accelerate address>"]
-}
-EOF
-$sudo systemctl daemon-reload
-$sudo systemctl restart docker
-```
 
 ## 部署示例
 
@@ -67,7 +104,10 @@ $db.createUser({
 
 ```bash
 # 部署 
-$sudo docker run -d --restart=always --net mydev --name mysql -h mysql -v mysql-data:/var/lib/mysql -p 3306:3306 \
+$sudo docker run -d --restart=always --net mydev --name mysql -h mysql \
+    -v mysql-data:/var/lib/mysql \
+    -v mysql-config:/etc/mysql/conf.d \
+    -p 3306:3306 \
     -e MYSQL_ROOT_PASSWORD=****** \
     mysql
 
